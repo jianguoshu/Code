@@ -1,14 +1,14 @@
 package com.douzi.dd;
 
-import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 
 import java.util.List;
 
-public class BaseActivity extends Activity {
+public class BaseActivity extends FragmentActivity {
 
     private static ActivityManager mActivityManager;
     private boolean isAppBroughtToBackground = true;
