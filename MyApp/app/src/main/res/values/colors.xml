@@ -3,4 +3,29 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <drawable name="home_menu_divider">#3d3d3d</drawable>
+
+    <!--titlebar-->
+    <color name="title_bar_bg_novel_home">#f54b38</color><!--novel home-->
+    <color name="title_bar_bg_novel_home_pressed">#ef3b27</color><!--novel home pressed-->
+    <color name="title_bar_bg_lbs_home">#fe6b47</color><!--lbs home-->
+    <color name="title_bar_bg_lbs_home_pressed">#f8512d</color><!--lbs home pressed-->
+    <color name="title_bar_bg_app">#5394ff</color><!--app-->
+    <color name="title_bar_bg_app_pressed">#4289ff</color><!--app-->
+    <color name="title_bar_bg">#ffffff</color><!--default-->
+    <color name="title_bar_bg_weixin">#ffffff</color><!--default-->
+    <color name="title_bar_bg_no_night">#f8f9fa</color><!--default-->
+    <color name="title_bar_bg_pressed">#f0f1f2</color><!--default pressed-->
+    <color name="title_bar_bg_pressed_no_night">#f0f1f2</color><!--default pressed-->
+    <color name="title_bar_bg_pic_news_pressed">#282828</color>
+    <color name="title_bar_bg_pic_news">#000000</color>
+    <color name="title_bar_divider">#eaebee</color>
+    <color name="title_bar_divider_lbs_home">#00000000</color>
+    <color name="title_bar_divider_no_night">#eaebee</color>
+    <color name="title_bar_text_color">#333333</color>
+    <color name="title_bar_text_btn_color">#ff7800</color>
+    <color name="title_bar_text_btn_color_disable">#95959d</color>
+    <color name="title_bar_text_color_no_night">#333333</color>
+    <color name="title_bar_title_text_color_lbs_home">#ffffff</color>
 </resources>

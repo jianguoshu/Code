@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- titlebar -->
+    <dimen name="titlebar_item_width">42dp</dimen>
+    <dimen name="titlebar_title_width">192dp</dimen>
+    <dimen name="titlebar_title_textsize">18dp</dimen>
+    <dimen name="titlebar_btn_textsize">16dp</dimen>
+    <dimen name="titlebar_height">45dp</dimen>
+    <dimen name="titlebar_menu_item_icon_padding_left">13.5dp</dimen>
+    <dimen name="titlebar_menu_item_icon_width">16dp</dimen>
+    <dimen name="titlebar_menu_item_text_margin_left">8dp</dimen>
+    <dimen name="titlebar_menu_item_text_size">14sp</dimen>
+    <dimen name="titlebar_menu_item_height">44dp</dimen>
+    <dimen name="titlebar_menu_width">120dp</dimen>
+    <dimen name="titlebar_menu_d9_edge">-4.8dp</dimen>
+    <dimen name="titlebar_menu_read_pop_raw_padding_right">11.2dp</dimen>
+    <dimen name="titlebar_menu_padding_right">1.2dp</dimen>
+    <dimen name="titlebar_menu_padding_top">4dp</dimen>
+</resources>
