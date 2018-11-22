@@ -87,7 +87,7 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".demo.anr.GridLayoutTest.GridLayoutActivity" />
+        <activity android:name=".demo.GridLayoutTest.GridLayoutActivity" />
         <activity android:name=".demo.overalertwindow.OverAlertActivity" />
         <activity android:name=".demo.timetest.TimeActivity" />
         <activity android:name=".demo.anr.ANRActivity" />
