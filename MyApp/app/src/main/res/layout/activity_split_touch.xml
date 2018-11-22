@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.douzi.dd.demo.splittouch.LogLinearLayout
+        android:id="@+id/ll_log_one"
+        android:layout_width="match_parent"
+        android:splitMotionEvents="true"
+        android:layout_height="match_parent">
+
+
+        <com.douzi.dd.demo.splittouch.LogLinearLayout
+            android:id="@+id/ll_log_two"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <com.douzi.dd.demo.splittouch.LogTextView
+                android:id="@+id/tv_log_one"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#009900" />
+
+            <com.douzi.dd.demo.splittouch.LogTextView
+                android:id="@+id/tv_log_two"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#000099" />
+        </com.douzi.dd.demo.splittouch.LogLinearLayout>
+
+    </com.douzi.dd.demo.splittouch.LogLinearLayout>
+</RelativeLayout>
