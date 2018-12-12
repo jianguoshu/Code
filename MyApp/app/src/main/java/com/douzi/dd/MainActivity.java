@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.douzi.dd.demo.GridLayoutTest.GridLayoutActivity;
 import com.douzi.dd.demo.anr.ANRActivity;
+import com.douzi.dd.demo.leonids.LeonidsActivity;
 import com.douzi.dd.demo.maptest.HashBiMapActivity;
 import com.douzi.dd.demo.overalertwindow.OverAlertActivity;
 import com.douzi.dd.demo.recyclerview.RecyclerViewActivity;
@@ -31,6 +32,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         this.findViewById(R.id.tv_btn_time_test).setOnClickListener(this);
         this.findViewById(R.id.tv_btn_anr_test).setOnClickListener(this);
         this.findViewById(R.id.tv_hashbimap_test).setOnClickListener(this);
+        this.findViewById(R.id.tv_LeonidsActivity).setOnClickListener(this);
     }
 
     @Override
@@ -65,6 +67,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.tv_hashbimap_test:
                 HashBiMapActivity.startAct(this);
+                break;
+            case R.id.tv_LeonidsActivity:
+                LeonidsActivity.startAct(this);
                 break;
         }
     }

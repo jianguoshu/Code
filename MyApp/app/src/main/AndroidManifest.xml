@@ -58,6 +58,7 @@
 
     <!-- 监听来电 -->
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -66,7 +67,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -91,7 +91,8 @@
         <activity android:name=".demo.overalertwindow.OverAlertActivity" />
         <activity android:name=".demo.timetest.TimeActivity" />
         <activity android:name=".demo.anr.ANRActivity" />
-        <activity android:name=".demo.maptest.HashBiMapActivity"></activity>
+        <activity android:name=".demo.maptest.HashBiMapActivity" />
+        <activity android:name=".demo.leonids.LeonidsActivity"></activity>
     </application>
 
 </manifest>

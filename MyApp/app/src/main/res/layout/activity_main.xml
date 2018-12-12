@@ -133,6 +133,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.6dp"
                 android:background="#666666" />
+
+            <TextView
+                android:id="@+id/tv_LeonidsActivity"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="LeonidsActivity" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.6dp"
+                android:background="#666666" />
         </LinearLayout>
     </ScrollView>
 
