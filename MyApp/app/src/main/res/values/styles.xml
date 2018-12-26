@@ -7,6 +7,10 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="FullScreen" parent="AppTheme">
+        <!-- Customize your theme here. -->
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
     <style name="titlebar_item">
         <item name="android:layout_width">@dimen/titlebar_item_width</item>
         <item name="android:layout_height">match_parent</item>

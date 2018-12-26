@@ -59,6 +59,9 @@
     <!-- 监听来电 -->
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -92,7 +95,11 @@
         <activity android:name=".demo.timetest.TimeActivity" />
         <activity android:name=".demo.anr.ANRActivity" />
         <activity android:name=".demo.maptest.HashBiMapActivity" />
-        <activity android:name=".demo.leonids.LeonidsActivity"></activity>
+        <activity android:name=".demo.leonids.LeonidsActivity" />
+        <activity
+            android:name=".demo.media.VideoViewActivity"
+            android:theme="@style/FullScreen" />
+        <activity android:name=".demo.camera.CameraPreviewActivity"></activity>
     </application>
 
 </manifest>
