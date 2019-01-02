@@ -5,16 +5,16 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.ImageFormat;
+import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
+import android.view.TextureView;
 
-public class CameraPreview extends SurfaceView {
+public class CameraPreview2 extends TextureView {
 
     private @Nullable
     Camera mCamera;
@@ -26,17 +26,17 @@ public class CameraPreview extends SurfaceView {
     int scaleMode;
     private boolean isPreviewing = false;
 
-    public CameraPreview(Context context) {
+    public CameraPreview2(Context context) {
         super(context);
         init();
     }
 
-    public CameraPreview(Context context, AttributeSet attrs) {
+    public CameraPreview2(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public CameraPreview(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CameraPreview2(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
@@ -44,20 +44,26 @@ public class CameraPreview extends SurfaceView {
     void init() {
         cameraId = CameraId.FRONT;
         scaleMode = ScaleMode.FIT_WIDTH;
-        getHolder().addCallback(new SurfaceHolder.Callback() {
+        setSurfaceTextureListener(new SurfaceTextureListener() {
             @Override
-            public void surfaceCreated(SurfaceHolder holder) {
+            public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
                 startPreview();
             }
 
             @Override
-            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+            public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
 
             }
 
             @Override
-            public void surfaceDestroyed(SurfaceHolder holder) {
+            public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
                 releaseCamera();
+                return true;
+            }
+
+            @Override
+            public void onSurfaceTextureUpdated(SurfaceTexture surface) {
+
             }
         });
     }
@@ -131,7 +137,7 @@ public class CameraPreview extends SurfaceView {
                         requestLayout();
                     }
                     mCamera.setParameters(parameters);
-                    mCamera.setPreviewDisplay(this.getHolder());
+                    mCamera.setPreviewTexture(getSurfaceTexture());
                 }
             }
         } catch (Throwable e) {
