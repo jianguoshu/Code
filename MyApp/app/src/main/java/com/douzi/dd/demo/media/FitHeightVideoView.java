@@ -2,10 +2,7 @@ package com.douzi.dd.demo.media;
 
 import android.content.Context;
 import android.graphics.Rect;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
-import android.widget.VideoView;
 
 import com.douzi.dd.BaseActivity;
 
@@ -33,11 +30,6 @@ public class FitHeightVideoView extends VideoView {
 
     public FitHeightVideoView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public FitHeightVideoView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
     }
 
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {

@@ -16,8 +16,7 @@
             android:id="@+id/video_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:background="#ffffff" />
+            android:layout_gravity="center"/>
     </FrameLayout>
 
     <FrameLayout
@@ -25,10 +24,9 @@
         android:layout_height="300dp"
         android:layout_gravity="right">
 
-        <com.douzi.dd.demo.camera.CameraPreview2
+        <com.douzi.dd.demo.camera.CameraPreview
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center" />
     </FrameLayout>
-
 </FrameLayout>

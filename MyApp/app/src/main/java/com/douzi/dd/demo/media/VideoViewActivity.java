@@ -3,9 +3,11 @@ package com.douzi.dd.demo.media;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.douzi.dd.BaseActivity;
 import com.douzi.dd.R;
@@ -38,17 +40,17 @@ public class VideoViewActivity extends BaseActivity {
                 mVideoView.setVideoHeight(mp.getVideoHeight());
                 mVideoView.requestLayout();
                 mp.setVideoScalingMode(MediaPlayer.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING);
-                mp.setOnInfoListener(new MediaPlayer.OnInfoListener() {
-                    @Override
-                    public boolean onInfo(MediaPlayer mp, int what, int extra) {
-                        if (what == MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START) {
-                            // video 视屏播放的时候把背景设置为透明
-                            mVideoView.setBackgroundColor(Color.TRANSPARENT);
-                            return true;
-                        }
-                        return false;
-                    }
-                });
+//                mp.setOnInfoListener(new MediaPlayer.OnInfoListener() {
+//                    @Override
+//                    public boolean onInfo(MediaPlayer mp, int what, int extra) {
+//                        if (what == MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START) {
+//                            // video 视屏播放的时候把背景设置为透明
+//                            mVideoView.setBackgroundColor(Color.TRANSPARENT);
+//                            return true;
+//                        }
+//                        return false;
+//                    }
+//                });
                 mp.start();
             }
         });
