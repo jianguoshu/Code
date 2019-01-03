@@ -4,7 +4,11 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.ImageFormat;
+import android.graphics.Matrix;
+import android.graphics.Rect;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.support.annotation.NonNull;
@@ -153,5 +157,43 @@ public class CameraPreview2 extends TextureView {
             mCamera = null;
         }
         isPreviewing = false;
+    }
+
+    public @Nullable
+    Bitmap capture() {
+        Bitmap bitmap = null;
+        try {
+            bitmap = getBitmap();
+            int width = getWidth();
+            int height = getHeight();
+            int widthBm = bitmap.getWidth();
+            int heightBm = bitmap.getHeight();
+            if (widthBm != width || heightBm != height) {
+                float scaleWidth = ((float) width) / widthBm;
+                float scaleHeight = ((float) height) / heightBm;
+                Matrix matrix = new Matrix();
+                matrix.postScale(scaleWidth, scaleHeight);
+                bitmap = Bitmap.createBitmap(bitmap, 0, 0, widthBm, heightBm, matrix, true);
+            }
+
+            Rect rect = new Rect();
+            getGlobalVisibleRect(rect);
+            int widthVisible = rect.right - rect.left;
+            int heightVisible = rect.bottom - rect.top;
+            int startX = 0;
+            int startY = 0;
+            if (widthVisible < width) {
+                startX = (int) (1.0f * (width - widthVisible) / 2);
+            }
+
+            if (heightVisible < height) {
+                startY = (int) (1.0f * (height - heightVisible) / 2);
+            }
+
+            return Bitmap.createBitmap(bitmap, startX, startY, widthVisible, heightVisible);
+        } catch (Throwable e) {
+            e.printStackTrace();
+            return bitmap;
+        }
     }
 }

@@ -8,13 +8,14 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.douzi.dd.BaseActivity;
 import com.douzi.dd.R;
 
 public class CameraPreviewActivity extends BaseActivity {
 
-    private CameraPreview cameraPreview;
+    private CameraPreview2 cameraPreview;
 
     public static void startAct(Context context) {
         Intent intent = new Intent(context, CameraPreviewActivity.class);
@@ -40,6 +41,14 @@ public class CameraPreviewActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 cameraPreview.forceLayout();
+            }
+        });
+
+        final ImageView captureDisplay = this.findViewById(R.id.iv_capture_display);
+        this.findViewById(R.id.btn_capture).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                captureDisplay.setImageBitmap(cameraPreview.capture());
             }
         });
     }

@@ -1,30 +1,40 @@
-package com.douzi.dd.demo.media;
+package com.douzi.dd.demo.media;/*
+ * Copyright (C) 2006 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Matrix;
-import android.graphics.Rect;
-import android.graphics.SurfaceTexture;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.media.MediaPlayer.OnErrorListener;
 import android.media.MediaPlayer.OnInfoListener;
 import android.net.Uri;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.Pair;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
-import android.view.Surface;
-import android.view.TextureView;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.MediaController;
 import android.widget.MediaController.MediaPlayerControl;
+
 
 import java.io.IOException;
 import java.util.Map;
@@ -36,14 +46,16 @@ import java.util.Map;
  * it can be used in any layout manager, and provides various display options
  * such as scaling and tinting.
  */
-public class VideoView extends TextureView implements MediaPlayerControl {
+public class VideoView2 extends SurfaceView implements MediaPlayerControl {
     private @ScaleMode
     int scaleMode = ScaleMode.CENTER_CROP;
 
     private String TAG = "VideoView";
+    // settable by the client
     private Uri mUri;
     private Map<String, String> mHeaders;
 
+    // all possible internal states
     private static final int STATE_ERROR = -1;
     private static final int STATE_IDLE = 0;
     private static final int STATE_PREPARING = 1;
@@ -52,10 +64,16 @@ public class VideoView extends TextureView implements MediaPlayerControl {
     private static final int STATE_PAUSED = 4;
     private static final int STATE_PLAYBACK_COMPLETED = 5;
 
+    // mCurrentState is a VideoView object's current state.
+    // mTargetState is the state that a method caller intends to reach.
+    // For instance, regardless the VideoView object's current state,
+    // calling pause() intends to bring the object to a target state
+    // of STATE_PAUSED.
     private int mCurrentState = STATE_IDLE;
     private int mTargetState = STATE_IDLE;
 
-    private SurfaceTexture mSurfaceTexture = null;
+    // All the stuff we need for playing and showing a video
+    private SurfaceHolder mSurfaceHolder = null;
     private MediaPlayer mMediaPlayer = null;
     private int mAudioSession;
     private int mVideoWidth;
@@ -68,29 +86,29 @@ public class VideoView extends TextureView implements MediaPlayerControl {
     private int mCurrentBufferPercentage;
     private OnErrorListener mOnErrorListener;
     private OnInfoListener mOnInfoListener;
-    private int mSeekWhenPrepared;
+    private int mSeekWhenPrepared;  // recording the seek position while preparing
     private boolean mCanPause;
     private boolean mCanSeekBack;
     private boolean mCanSeekForward;
 
-    public VideoView(Context context) {
+    public VideoView2(Context context) {
         super(context);
         initVideoView();
     }
 
-    public VideoView(Context context, AttributeSet attrs) {
+    public VideoView2(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
         initVideoView();
     }
 
-    public VideoView(Context context, AttributeSet attrs, int defStyle) {
+    public VideoView2(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         initVideoView();
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        Pair<Integer, Integer> pair = measureByScaleMode(widthMeasureSpec, heightMeasureSpec);
+        Pair<Integer, Integer> pair =measureByScaleMode(widthMeasureSpec, heightMeasureSpec);
         setMeasuredDimension(pair.first, pair.second);
     }
 
@@ -167,17 +185,16 @@ public class VideoView extends TextureView implements MediaPlayerControl {
         return new Pair<>(width, height);
     }
 
-
     @Override
     public void onInitializeAccessibilityEvent(AccessibilityEvent event) {
         super.onInitializeAccessibilityEvent(event);
-        event.setClassName(VideoView.class.getName());
+        event.setClassName(VideoView2.class.getName());
     }
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo info) {
         super.onInitializeAccessibilityNodeInfo(info);
-        info.setClassName(VideoView.class.getName());
+        info.setClassName(VideoView2.class.getName());
     }
 
     public int resolveAdjustedSize(int desiredSize, int measureSpec) {
@@ -187,8 +204,8 @@ public class VideoView extends TextureView implements MediaPlayerControl {
     private void initVideoView() {
         mVideoWidth = 0;
         mVideoHeight = 0;
-        setSurfaceTextureListener(mSTListener);
-//        getHolder().setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+        getHolder().addCallback(mSHCallback);
+        getHolder().setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
         setFocusable(true);
         setFocusableInTouchMode(true);
         requestFocus();
@@ -227,13 +244,18 @@ public class VideoView extends TextureView implements MediaPlayerControl {
     }
 
     private void openVideo() {
-        if (mUri == null || mSurfaceTexture == null) {
+        if (mUri == null || mSurfaceHolder == null) {
+            // not ready for playback just yet, will try again later
             return;
         }
+        // Tell the music playback service to pause
+        // TODO: these constants need to be published somewhere in the framework.
         Intent i = new Intent("com.android.music.musicservicecommand");
         i.putExtra("command", "pause");
         getContext().sendBroadcast(i);
 
+        // we shouldn't clear the target state, because somebody might have
+        // called start() previously
         release(false);
         try {
             mMediaPlayer = new MediaPlayer();
@@ -242,7 +264,6 @@ public class VideoView extends TextureView implements MediaPlayerControl {
             } else {
                 mAudioSession = mMediaPlayer.getAudioSessionId();
             }
-
             mMediaPlayer.setOnPreparedListener(mPreparedListener);
             mMediaPlayer.setOnVideoSizeChangedListener(mSizeChangedListener);
             mMediaPlayer.setOnCompletionListener(mCompletionListener);
@@ -251,10 +272,12 @@ public class VideoView extends TextureView implements MediaPlayerControl {
             mMediaPlayer.setOnBufferingUpdateListener(mBufferingUpdateListener);
             mCurrentBufferPercentage = 0;
             mMediaPlayer.setDataSource(getContext(), mUri, mHeaders);
-            mMediaPlayer.setSurface(new Surface(mSurfaceTexture));
+            mMediaPlayer.setDisplay(mSurfaceHolder);
             mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
             mMediaPlayer.setScreenOnWhilePlaying(true);
             mMediaPlayer.prepareAsync();
+            // we don't set the target state here either, but preserve the
+            // target state that was there before.
             mCurrentState = STATE_PREPARING;
             attachMediaController();
         } catch (IOException ex) {
@@ -296,7 +319,7 @@ public class VideoView extends TextureView implements MediaPlayerControl {
                     mVideoWidth = mp.getVideoWidth();
                     mVideoHeight = mp.getVideoHeight();
                     if (mVideoWidth != 0 && mVideoHeight != 0) {
-//                        getHolder().setFixedSize(mVideoWidth, mVideoHeight);
+                        getHolder().setFixedSize(mVideoWidth, mVideoHeight);
                         requestLayout();
                     }
                 }
@@ -305,11 +328,14 @@ public class VideoView extends TextureView implements MediaPlayerControl {
     MediaPlayer.OnPreparedListener mPreparedListener = new MediaPlayer.OnPreparedListener() {
         public void onPrepared(MediaPlayer mp) {
             mCurrentState = STATE_PREPARED;
+
             mMediaPlayer.setVideoScalingMode(MediaPlayer.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING);
 
+            // Get the capabilities of the player for this stream
+            // TODO: douzi on 2019/1/3
 //            Metadata data = mp.getMetadata(MediaPlayer.METADATA_ALL,
 //                    MediaPlayer.BYPASS_METADATA_FILTER);
-
+//
 //            if (data != null) {
 //                mCanPause = !data.has(Metadata.PAUSE_AVAILABLE)
 //                        || data.getBoolean(Metadata.PAUSE_AVAILABLE);
@@ -321,8 +347,6 @@ public class VideoView extends TextureView implements MediaPlayerControl {
 //                mCanPause = mCanSeekBack = mCanSeekForward = true;
 //            }
 
-            mp.setVideoScalingMode(MediaPlayer.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING);
-
             if (mOnPreparedListener != null) {
                 mOnPreparedListener.onPrepared(mMediaPlayer);
             }
@@ -332,13 +356,17 @@ public class VideoView extends TextureView implements MediaPlayerControl {
             mVideoWidth = mp.getVideoWidth();
             mVideoHeight = mp.getVideoHeight();
 
-            int seekToPosition = mSeekWhenPrepared;
+            int seekToPosition = mSeekWhenPrepared;  // mSeekWhenPrepared may be changed after seekTo() call
             if (seekToPosition != 0) {
                 seekTo(seekToPosition);
             }
             if (mVideoWidth != 0 && mVideoHeight != 0) {
-//                getHolder().setFixedSize(mVideoWidth, mVideoHeight);
+                //Log.i("@@@@", "video size: " + mVideoWidth +"/"+ mVideoHeight);
+                getHolder().setFixedSize(mVideoWidth, mVideoHeight);
                 if (mSurfaceWidth == mVideoWidth && mSurfaceHeight == mVideoHeight) {
+                    // We didn't actually change the size (it was already at the size
+                    // we need), so we won't get a "surface changed" callback, so
+                    // start the video here instead of in the callback.
                     if (mTargetState == STATE_PLAYING) {
                         start();
                         if (mMediaController != null) {
@@ -347,11 +375,14 @@ public class VideoView extends TextureView implements MediaPlayerControl {
                     } else if (!isPlaying() &&
                             (seekToPosition != 0 || getCurrentPosition() > 0)) {
                         if (mMediaController != null) {
+                            // Show the media controls when we're paused into a video and make 'em stick.
                             mMediaController.show(0);
                         }
                     }
                 }
             } else {
+                // We don't know the video size yet, but should start anyway.
+                // The video size might be reported to us later.
                 if (mTargetState == STATE_PLAYING) {
                     start();
                 }
@@ -396,6 +427,7 @@ public class VideoView extends TextureView implements MediaPlayerControl {
                      * longer have a window, don't bother showing the user an error.
                      */
                     if (getWindowToken() != null) {
+                        // TODO: douzi on 2019/1/3
 //                        Resources r = getContext().getResources();
 //                        int messageId;
 //
@@ -474,21 +506,13 @@ public class VideoView extends TextureView implements MediaPlayerControl {
         mOnInfoListener = l;
     }
 
-    SurfaceTextureListener mSTListener = new SurfaceTextureListener() {
-        @Override
-        public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
-            mSurfaceWidth = width;
-            mSurfaceHeight = height;
-            mSurfaceTexture = surface;
-            openVideo();
-        }
-
-        @Override
-        public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
-            mSurfaceWidth = width;
-            mSurfaceHeight = height;
+    SurfaceHolder.Callback mSHCallback = new SurfaceHolder.Callback() {
+        public void surfaceChanged(SurfaceHolder holder, int format,
+                                   int w, int h) {
+            mSurfaceWidth = w;
+            mSurfaceHeight = h;
             boolean isValidState = (mTargetState == STATE_PLAYING);
-            boolean hasValidSize = (mVideoWidth == width && mVideoHeight == height);
+            boolean hasValidSize = (mVideoWidth == w && mVideoHeight == h);
             if (mMediaPlayer != null && isValidState && hasValidSize) {
                 if (mSeekWhenPrepared != 0) {
                     seekTo(mSeekWhenPrepared);
@@ -497,20 +521,18 @@ public class VideoView extends TextureView implements MediaPlayerControl {
             }
         }
 
-        @Override
-        public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
-            mSurfaceTexture = null;
+        public void surfaceCreated(SurfaceHolder holder) {
+            mSurfaceHolder = holder;
+            openVideo();
+        }
+
+        public void surfaceDestroyed(SurfaceHolder holder) {
+            // after we return from this we can't use the surface any more
+            mSurfaceHolder = null;
             if (mMediaController != null) mMediaController.hide();
             release(true);
-            return true;
-        }
-
-        @Override
-        public void onSurfaceTextureUpdated(SurfaceTexture surface) {
-
         }
     };
-
 
     /*
      * release the media player in any state
@@ -690,43 +712,5 @@ public class VideoView extends TextureView implements MediaPlayerControl {
             foo.release();
         }
         return mAudioSession;
-    }
-
-    public @Nullable
-    Bitmap capture() {
-        Bitmap bitmap = null;
-        try {
-            bitmap = getBitmap();
-            int width = getWidth();
-            int height = getHeight();
-            int widthBm = bitmap.getWidth();
-            int heightBm = bitmap.getHeight();
-            if (widthBm != width || heightBm != height) {
-                float scaleWidth = ((float) width) / widthBm;
-                float scaleHeight = ((float) height) / heightBm;
-                Matrix matrix = new Matrix();
-                matrix.postScale(scaleWidth, scaleHeight);
-                bitmap = Bitmap.createBitmap(bitmap, 0, 0, widthBm, heightBm, matrix, true);
-            }
-
-            Rect rect = new Rect();
-            getGlobalVisibleRect(rect);
-            int widthVisible = rect.right - rect.left;
-            int heightVisible = rect.bottom - rect.top;
-            int startX = 0;
-            int startY = 0;
-            if (widthVisible < width) {
-                startX = (int) (1.0f * (width - widthVisible) / 2);
-            }
-
-            if (heightVisible < height) {
-                startY = (int) (1.0f * (height - heightVisible) / 2);
-            }
-
-            return Bitmap.createBitmap(bitmap, startX, startY, widthVisible, heightVisible);
-        } catch (Throwable e) {
-            e.printStackTrace();
-            return bitmap;
-        }
     }
 }

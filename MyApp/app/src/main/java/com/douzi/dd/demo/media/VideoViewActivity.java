@@ -3,7 +3,6 @@ package com.douzi.dd.demo.media;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +13,7 @@ import com.douzi.dd.R;
 
 public class VideoViewActivity extends BaseActivity {
 
-    private FitHeightVideoView mVideoView;
+    private VideoView mVideoView;
 
     public static void startAct(Context context) {
         Intent intent = new Intent(context, VideoViewActivity.class);
@@ -36,10 +35,10 @@ public class VideoViewActivity extends BaseActivity {
         mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
-                mVideoView.setVideoWidth(mp.getVideoWidth());
-                mVideoView.setVideoHeight(mp.getVideoHeight());
-                mVideoView.requestLayout();
-                mp.setVideoScalingMode(MediaPlayer.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING);
+//                mVideoView.setVideoWidth(mp.getVideoWidth());
+//                mVideoView.setVideoHeight(mp.getVideoHeight());
+//                mVideoView.requestLayout();
+//                mp.setVideoScalingMode(MediaPlayer.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING);
 //                mp.setOnInfoListener(new MediaPlayer.OnInfoListener() {
 //                    @Override
 //                    public boolean onInfo(MediaPlayer mp, int what, int extra) {
@@ -58,6 +57,14 @@ public class VideoViewActivity extends BaseActivity {
             @Override
             public void onCompletion(MediaPlayer mp) {
 
+            }
+        });
+
+        final ImageView captureDisplay = this.findViewById(R.id.iv_capture_display);
+        this.findViewById(R.id.btn_capture).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                captureDisplay.setImageBitmap(mVideoView.capture());
             }
         });
     }
