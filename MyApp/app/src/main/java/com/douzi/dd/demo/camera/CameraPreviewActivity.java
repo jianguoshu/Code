@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
@@ -12,6 +13,9 @@ import android.widget.ImageView;
 
 import com.douzi.dd.BaseActivity;
 import com.douzi.dd.R;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 public class CameraPreviewActivity extends BaseActivity {
 
@@ -35,6 +39,13 @@ public class CameraPreviewActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 cameraPreview.switchCamera();
+                Intent intent = new Intent();
+                try {
+                    intent.setData(Uri.parse("sogousearch://extension4result?query=" + URLEncoder.encode("刘虎", "GBK")));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                CameraPreviewActivity.this.startActivity(intent);
             }
         });
         this.findViewById(R.id.btn_layout).setOnClickListener(new View.OnClickListener() {
