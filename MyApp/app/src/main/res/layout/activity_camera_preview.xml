@@ -9,6 +9,7 @@
 
     <com.douzi.dd.base.RoundCornerFrameLayout
         android:layout_width="match_parent"
+        android:background="#ffffff"
         android:layout_height="200dp">
 
         <com.douzi.dd.demo.camera.CameraPreview2
