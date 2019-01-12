@@ -7,7 +7,7 @@
     tools:context=".demo.camera.CameraPreviewActivity">
 
 
-    <com.douzi.dd.base.RoundCornerFrameLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:background="#ffffff"
         android:layout_height="200dp">
@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center" />
-    </com.douzi.dd.base.RoundCornerFrameLayout>
+    </FrameLayout>
 
     <TextView
         android:id="@+id/btn_switch"

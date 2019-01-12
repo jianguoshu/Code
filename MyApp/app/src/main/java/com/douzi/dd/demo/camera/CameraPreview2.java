@@ -8,15 +8,20 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.ImageFormat;
 import android.graphics.Matrix;
+import android.graphics.Outline;
 import android.graphics.Rect;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.TextureView;
+import android.view.View;
+
+import com.douzi.dd.base.RoundCornerViewOutlineProvider;
 
 public class CameraPreview2 extends TextureView {
 
@@ -46,8 +51,30 @@ public class CameraPreview2 extends TextureView {
     }
 
     void init() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setOutlineProvider(new RoundCornerViewOutlineProvider(200) {
+                @Override
+                public void getOutline(View view, Outline outline) {
+                    PreviewSize previewSize = mCameraConfig.getPreviewSize(cameraId);
+                    int viewWidth = 0;
+                    int viewHeight = 0;
+                    if (previewSize != null) {
+                        viewWidth = previewSize.viewWidth;
+                        viewHeight = previewSize.viewHeight;
+                    }
+                    Rect rect = new Rect();
+                    view.getGlobalVisibleRect(rect);
+                    int width = rect.right - rect.left;
+                    int height = rect.bottom - rect.top;
+                    Rect selfRect = new Rect((int)(1.0f * (viewWidth - width) / 2), (int)(1.0f * (viewHeight - height) / 2),
+                            (int)(1.0f * (viewWidth - width) / 2 + width), (int)(1.0f * (viewHeight - height) / 2 + height));
+                    outline.setRoundRect(selfRect, 50);
+                }
+            });
+            setClipToOutline(true);
+        }
         cameraId = CameraId.FRONT;
-        scaleMode = ScaleMode.FIT_WIDTH;
+        scaleMode = ScaleMode.CROP;
         setSurfaceTextureListener(new SurfaceTextureListener() {
             @Override
             public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
