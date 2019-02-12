@@ -3,6 +3,7 @@ package com.douzi.dd;
 import android.os.Bundle;
 import android.view.View;
 
+import com.douzi.dd.demo.CoordinatorLayout.CoordinatorLayoutActivity;
 import com.douzi.dd.demo.GridLayoutTest.GridLayoutActivity;
 import com.douzi.dd.demo.anr.ANRActivity;
 import com.douzi.dd.demo.camera.CameraPreviewActivity;
@@ -37,6 +38,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         this.findViewById(R.id.tv_LeonidsActivity).setOnClickListener(this);
         this.findViewById(R.id.tv_VideoViewActivity).setOnClickListener(this);
         this.findViewById(R.id.tv_CameraPreviewActivity).setOnClickListener(this);
+        this.findViewById(R.id.tv_CoordinatorLayoutActivity).setOnClickListener(this);
     }
 
     @Override
@@ -80,6 +82,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.tv_CameraPreviewActivity:
                 CameraPreviewActivity.startAct(this);
+                break;
+            case R.id.tv_CoordinatorLayoutActivity:
+                CoordinatorLayoutActivity.startAct(this);
                 break;
         }
     }

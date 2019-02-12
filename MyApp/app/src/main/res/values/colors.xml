@@ -28,4 +28,11 @@
     <color name="title_bar_text_btn_color_disable">#95959d</color>
     <color name="title_bar_text_color_no_night">#333333</color>
     <color name="title_bar_title_text_color_lbs_home">#ffffff</color>
+    <color name="search_bar_entry_anim_bottom_bg">#ffffff</color>
+    <color name="search_bar_entry_anim_textview">#ffffff</color>
+    <color name="suggestion_searchbox_text">#000000</color>
+    <color name="search_box_divider">#d6d6d9</color>
+    <color name="suggestion_edit_text_color">#333333</color>
+    <color name="edittext_text_color_highlight">#ffe5dc</color>
+    <color name="suggestion_edit_text_hint_color">#bbbbbb</color>
 </resources>

@@ -1,0 +1,233 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <!-- 频道导航 -->
+            <include
+                android:id="@+id/layout_search_result_channel"
+                layout="@layout/layout_search_result_channel"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/search_result_channel_height"
+                android:layout_below="@+id/rl_search_box"
+                android:layout_marginTop="@dimen/result_page_channel_margin_top" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_width"
+                android:layout_below="@id/layout_search_result_channel"
+                android:background="@color/title_bar_divider" />
+
+            <RelativeLayout
+                android:id="@+id/rl_search_box"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/web_topbar_height"
+                android:background="@color/title_bar_bg"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/ll_search_box"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/web_search_box_height"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal"
+                    android:paddingLeft="17dp"
+                    android:paddingRight="17dp">
+
+                    <LinearLayout
+                        android:id="@+id/v_search_box_sugg_bg"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/search_box_skin_light"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/logo_ic"
+                            android:layout_width="22dip"
+                            android:layout_height="22dip"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="10dip"
+                            android:background="@drawable/searchbox_ic_logo" />
+
+                        <ImageView
+                            android:id="@+id/iv_search_result_thumbnail"
+                            android:layout_width="26dip"
+                            android:layout_height="26dip"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="5dip"
+                            android:scaleType="centerCrop"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/searchbar_search_textview"
+                            android:layout_width="0dp"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:hint="。。。"
+                            android:paddingLeft="8dip"
+                            android:singleLine="true"
+                            android:textColor="@color/suggestion_edit_text_color"
+                            android:textColorHighlight="@color/edittext_text_color_highlight"
+                            android:textColorHint="@color/suggestion_edit_text_hint_color"
+                            android:textSize="@dimen/searchbox_txt_font_size"
+                            android:textStyle="normal" />
+
+                        <LinearLayout
+                            android:id="@+id/sugg_qrcode_photo_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <FrameLayout
+                                android:layout_width="40dp"
+                                android:layout_height="fill_parent"
+                                android:layout_gravity="center_vertical"
+                                android:background="@android:color/transparent"
+                                android:visibility="visible">
+
+                                <!-- 刷新 -->
+
+                                <ImageButton
+                                    android:id="@+id/btn_top_refresh"
+                                    android:layout_width="22dp"
+                                    android:layout_height="22dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginLeft="8dp"
+                                    android:background="@android:color/transparent"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/icon_search_box_refresh"
+                                    android:visibility="visible" />
+                            </FrameLayout>
+
+                            <ImageView
+                                android:id="@+id/divide_line"
+                                android:layout_width="0.66dip"
+                                android:layout_height="20dip"
+                                android:layout_gravity="center"
+                                android:background="@color/search_box_divider"
+                                android:visibility="gone" />
+
+                            <LinearLayout
+                                android:id="@+id/search_bar_top_scan_btn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:layout_width="22dip"
+                                    android:layout_height="22dip"
+                                    android:layout_marginLeft="9dp"
+                                    android:layout_marginRight="14dp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/icon_camera" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/cancel_btn"
+                        android:layout_width="62dip"
+                        android:layout_height="@dimen/web_search_box_height"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:text="取消"
+                        android:textColor="@color/suggestion_searchbox_text"
+                        android:textSize="18sp"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <!-- 进度条 -->
+
+                <RelativeLayout
+                    android:id="@+id/progress_rl"
+                    android:layout_width="fill_parent"
+                    android:layout_height="10dp"
+                    android:layout_below="@+id/ll_search_box"
+                    android:layout_marginTop="-5.5dp"
+                    android:paddingLeft="17dp"
+                    android:paddingRight="17dp">
+
+                    <FrameLayout
+                        android:id="@+id/progress_view"
+                        android:layout_width="12dp"
+                        android:layout_height="5dp"
+                        android:layout_centerVertical="true"
+                        android:visibility="visible">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="-2.5dp"
+                            android:layout_marginBottom="-2.5dp"
+                            android:background="@drawable/sg_progress" />
+                    </FrameLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_reader_model_guide"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/iv_reader_model_guide"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/search_bar_reader_guide_bg" />
+
+                    <TextView
+                        android:id="@+id/tv_reader_model_guide"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="3dp"
+                        android:gravity="center"
+                        android:text="点击开启阅读模式"
+                        android:textColor="@color/search_bar_entry_anim_textview"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/iv_entry_anim_bottom_bg"
+                        android:layout_width="match_parent"
+                        android:layout_height="7dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/search_bar_entry_anim_bottom_bg" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
+
+        <WebView
+            android:id="@+id/wb_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>
