@@ -7,27 +7,58 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="81dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <RelativeLayout
+        <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|enterAlways">
+            android:layout_height="81dp"
+            android:minHeight="@dimen/web_topbar_height"
+            app:contentScrim="#00000000"
+            app:expandedTitleMarginBottom="@dimen/web_topbar_height"
+            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed|enterAlways"
+            app:title="我是collapsebar的标题">
 
-            <!-- 频道导航 -->
-            <include
-                android:id="@+id/layout_search_result_channel"
-                layout="@layout/layout_search_result_channel"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/search_result_channel_height"
-                android:layout_below="@+id/rl_search_box"
-                android:layout_marginTop="@dimen/result_page_channel_margin_top" />
+                android:layout_gravity="bottom"
+                android:background="@color/title_bar_bg_lbs_home"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/list_search_result_channel"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scrollbars="none" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:background="@drawable/channel_fadeout_pic" />
+                </FrameLayout>
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/divider_width"
                 android:layout_below="@id/layout_search_result_channel"
+                android:layout_gravity="bottom"
                 android:background="@color/title_bar_divider" />
 
             <RelativeLayout
@@ -35,7 +66,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/web_topbar_height"
                 android:background="@color/title_bar_bg"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                app:layout_collapseMode="pin">
 
                 <LinearLayout
                     android:id="@+id/ll_search_box"
@@ -164,7 +196,8 @@
                     android:layout_below="@+id/ll_search_box"
                     android:layout_marginTop="-5.5dp"
                     android:paddingLeft="17dp"
-                    android:paddingRight="17dp">
+                    android:paddingRight="17dp"
+                    app:layout_collapseMode="pin">
 
                     <FrameLayout
                         android:id="@+id/progress_view"
@@ -214,7 +247,7 @@
                         android:background="@color/search_bar_entry_anim_bottom_bg" />
                 </RelativeLayout>
             </RelativeLayout>
-        </RelativeLayout>
+        </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
 

@@ -22,9 +22,7 @@
     <!-- web_topbar_height + search_result_web_progressbar_height + search_result_web_progressbar_margin_top -->
     <dimen name="web_topbar_height">48dp</dimen>
     <dimen name="web_search_box_height">38dp</dimen>
-    <dimen name="web_topbar_height_without_edge">47dp</dimen>
     <dimen name="result_page_channel_margin_top">-5dp</dimen>
-    <dimen name="result_page_channel_divider_heigth">7dp</dimen>
     <dimen name="divider_width">0.6dp</dimen>
     <dimen name="searchbox_txt_font_size">17dp</dimen>
 </resources>
