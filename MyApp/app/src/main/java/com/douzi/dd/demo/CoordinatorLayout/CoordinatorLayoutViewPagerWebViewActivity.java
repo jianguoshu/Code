@@ -6,11 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.douzi.dd.BaseActivity;
 import com.douzi.dd.R;
+
+import java.util.logging.Logger;
 
 public class CoordinatorLayoutViewPagerWebViewActivity extends BaseActivity {
     private CollapsingToolbarLayout toolbarLayout;
@@ -40,6 +43,21 @@ public class CoordinatorLayoutViewPagerWebViewActivity extends BaseActivity {
         searchBoxHeight = getResources().getDimensionPixelSize(R.dimen.web_topbar_height);
 
         mViewPager = this.findViewById(R.id.viewpager);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                updatePage(i == 0, false);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
         mViewPager.setAdapter(new WebViewPagerAdapter(getSupportFragmentManager(), this));
 
         toolbarLayout = this.findViewById(R.id.toolbar_layout);
