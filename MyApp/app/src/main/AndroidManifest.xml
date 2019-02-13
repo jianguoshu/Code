@@ -99,7 +99,9 @@
             android:name=".demo.media.VideoViewActivity"
             android:theme="@style/FullScreen" />
         <activity android:name=".demo.camera.CameraPreviewActivity" />
-        <activity android:name=".demo.CoordinatorLayout.CoordinatorLayoutActivity"></activity>
+        <activity android:name=".demo.CoordinatorLayout.CoordinatorLayoutActivity" />
+        <activity android:name=".demo.CoordinatorLayout.CoordinatorLayoutViewPagerActivity" />
+        <activity android:name=".demo.CoordinatorLayout.CoordinatorLayoutViewPagerWebViewActivity"></activity>
     </application>
 
 </manifest>
