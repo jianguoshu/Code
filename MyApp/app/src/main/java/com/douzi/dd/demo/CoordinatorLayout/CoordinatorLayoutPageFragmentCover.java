@@ -1,6 +1,7 @@
 package com.douzi.dd.demo.CoordinatorLayout;
 
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ public class CoordinatorLayoutPageFragmentCover extends Fragment {
     public static final String ARG_PAGE = "PAGE_NUM";
     private int mPage;
 
+    private AppBarLayout mAppBarLayout;
     private WebView mWebView;
     private CollapsingToolbarLayout toolbarLayout;
     private int searchBoxHeight;
@@ -39,6 +41,8 @@ public class CoordinatorLayoutPageFragmentCover extends Fragment {
         View contentView = inflater.inflate(R.layout.fragment_page_coordinatorlayout_cover, null);
 
         searchBoxHeight = getResources().getDimensionPixelSize(R.dimen.web_topbar_height);
+
+        mAppBarLayout = contentView.findViewById(R.id.appbar);
 
         mWebView = contentView.findViewById(R.id.wb_content);
         mWebView.setWebViewClient(new WebViewClient() {
@@ -70,5 +74,12 @@ public class CoordinatorLayoutPageFragmentCover extends Fragment {
         } else {
             toolbarLayout.setMinimumHeight(searchBoxHeight);
         }
+    }
+
+    void setExpanded(boolean expanded, boolean animate) {
+        if (mAppBarLayout == null) {
+            return;
+        }
+        mAppBarLayout.setExpanded(expanded, animate);
     }
 }

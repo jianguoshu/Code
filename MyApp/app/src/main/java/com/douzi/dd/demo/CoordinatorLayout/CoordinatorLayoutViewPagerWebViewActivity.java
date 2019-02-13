@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -26,6 +27,7 @@ public class CoordinatorLayoutViewPagerWebViewActivity extends BaseActivity {
     boolean isViewPagerCanScroll = false;
     private boolean isHomePageDisplay = true;
     private CustomViewPager mViewPager;
+    private AppBarLayout mAppBarLayout;
 
     public static void startAct(Context context) {
         Intent intent = new Intent(context, CoordinatorLayoutViewPagerWebViewActivity.class);
@@ -42,10 +44,13 @@ public class CoordinatorLayoutViewPagerWebViewActivity extends BaseActivity {
 
         searchBoxHeight = getResources().getDimensionPixelSize(R.dimen.web_topbar_height);
 
+        mAppBarLayout = this.findViewById(R.id.appbar);
+
         mViewPager = this.findViewById(R.id.viewpager);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
+                mAppBarLayout.setExpanded(true, false);
             }
 
             @Override
@@ -123,6 +128,7 @@ public class CoordinatorLayoutViewPagerWebViewActivity extends BaseActivity {
                 mViewPager.setCurrentItem(1, false);
             }
         }
+        mAppBarLayout.setExpanded(true, false);
     }
 
     private void switchScrollMode() {

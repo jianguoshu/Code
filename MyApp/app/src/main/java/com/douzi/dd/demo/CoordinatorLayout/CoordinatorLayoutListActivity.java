@@ -45,7 +45,7 @@ public class CoordinatorLayoutListActivity extends BaseActivity {
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
-
+                setExpanded(true, false);
             }
 
             @Override
@@ -133,6 +133,12 @@ public class CoordinatorLayoutListActivity extends BaseActivity {
                 mViewPager.setCurrentItem(1, false);
             }
         }
+        setExpanded(true, false);
+    }
+
+    private void setExpanded(boolean expanded, boolean animate) {
+        coordinatorLayoutPageFragment.setExpanded(expanded, animate);
+        coordinatorLayoutPageFragmentCover.setExpanded(expanded, animate);
     }
 
     private void switchScrollMode() {
