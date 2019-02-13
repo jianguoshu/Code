@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.douzi.dd.demo.CoordinatorLayout.CoordinatorLayoutActivity;
+import com.douzi.dd.demo.CoordinatorLayout.CoordinatorLayoutListActivity;
 import com.douzi.dd.demo.CoordinatorLayout.CoordinatorLayoutViewPagerActivity;
 import com.douzi.dd.demo.CoordinatorLayout.CoordinatorLayoutViewPagerWebViewActivity;
 import com.douzi.dd.demo.GridLayoutTest.GridLayoutActivity;
@@ -43,6 +44,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         this.findViewById(R.id.tv_CoordinatorLayoutActivity).setOnClickListener(this);
         this.findViewById(R.id.tv_CoordinatorLayoutViewPagerActivity).setOnClickListener(this);
         this.findViewById(R.id.tv_CoordinatorLayoutViewPagerWebViewActivity).setOnClickListener(this);
+        this.findViewById(R.id.tv_CoordinatorLayoutListActivity).setOnClickListener(this);
     }
 
     @Override
@@ -95,6 +97,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.tv_CoordinatorLayoutViewPagerWebViewActivity:
                 CoordinatorLayoutViewPagerWebViewActivity.startAct(this);
+                break;
+            case R.id.tv_CoordinatorLayoutListActivity:
+                CoordinatorLayoutListActivity.startAct(this);
                 break;
         }
     }
