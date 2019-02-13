@@ -7,22 +7,25 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="81dp"
+        android:layout_height="wrap_content"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
-            android:layout_height="81dp"
-            android:minHeight="@dimen/web_topbar_height"
+            android:layout_height="wrap_content"
+            android:minHeight="0dp"
             app:contentScrim="#00000000"
             app:expandedTitleMarginBottom="@dimen/web_topbar_height"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed|enterAlways"
             app:title="我是collapsebar的标题">
 
             <LinearLayout
+                android:id="@+id/layout_search_result_channel"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/search_result_channel_height"
                 android:layout_gravity="bottom"
+                android:layout_marginTop="43dp"
                 android:background="@color/title_bar_bg_lbs_home"
                 android:orientation="vertical">
 
@@ -262,5 +265,30 @@
             android:layout_height="match_parent" />
 
     </android.support.v4.widget.NestedScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:background="#33009900"
+        android:orientation="horizontal"
+        app:layout_scrollFlags="scroll|snap|exitUntilCollapsed|enterAlways">
+
+        <TextView
+            android:id="@+id/btn_full_screen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="关闭全屏" />
+
+        <TextView
+            android:id="@+id/btn_cover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="打开浮层" />
+    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
