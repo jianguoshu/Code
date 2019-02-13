@@ -16,10 +16,15 @@ import com.douzi.dd.R;
 public class CoordinatorLayoutListActivity extends BaseActivity {
 
     boolean isFullScreen = true;
+    boolean isViewPagerCanScroll = false;
 
     private TextView btnFullScreen;
+    private TextView btnSwitch;
+    private TextView btnScrollMode;
     private CoordinatorLayoutPageFragment coordinatorLayoutPageFragment;
     private CoordinatorLayoutPageFragmentCover coordinatorLayoutPageFragmentCover;
+    private boolean isHomePageDisplay = true;
+    private CustomViewPager mViewPager;
 
     public static void startAct(Context context) {
         Intent intent = new Intent(context, CoordinatorLayoutListActivity.class);
@@ -36,7 +41,23 @@ public class CoordinatorLayoutListActivity extends BaseActivity {
         coordinatorLayoutPageFragment = CoordinatorLayoutPageFragment.newInstance(0);
         coordinatorLayoutPageFragmentCover = CoordinatorLayoutPageFragmentCover.newInstance(1);
 
-        ViewPager mViewPager = this.findViewById(R.id.viewpager);
+        mViewPager = this.findViewById(R.id.viewpager);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                updatePage(i == 0, false);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
         mViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int i) {
@@ -63,7 +84,25 @@ public class CoordinatorLayoutListActivity extends BaseActivity {
             }
         });
 
+        btnSwitch = this.findViewById(R.id.btn_switch);
+        btnSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updatePage(!isHomePageDisplay, true);
+            }
+        });
+
+        btnScrollMode = this.findViewById(R.id.btn_switch_scroll);
+        btnScrollMode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switchScrollMode();
+            }
+        });
+
         updateFullScreen(isFullScreen);
+        updatePage(isHomePageDisplay, false);
+        switchScrollMode();
     }
 
     private void switchFullScreen() {
@@ -79,5 +118,30 @@ public class CoordinatorLayoutListActivity extends BaseActivity {
         }
         coordinatorLayoutPageFragment.updateFullScreen(isFullScreen);
         coordinatorLayoutPageFragmentCover.updateFullScreen(isFullScreen);
+    }
+
+    private void updatePage(boolean homePageDisplay, boolean byHand) {
+        this.isHomePageDisplay = homePageDisplay;
+        if (isHomePageDisplay) {
+            btnSwitch.setText("打开二级页");
+            if (byHand) {
+                mViewPager.setCurrentItem(0, false);
+            }
+        } else {
+            btnSwitch.setText("回到首页");
+            if (byHand) {
+                mViewPager.setCurrentItem(1, false);
+            }
+        }
+    }
+
+    private void switchScrollMode() {
+        isViewPagerCanScroll = !isViewPagerCanScroll;
+        mViewPager.setCanScroll(isViewPagerCanScroll);
+        if (isViewPagerCanScroll) {
+            btnScrollMode.setText("关闭滑动切换");
+        } else {
+            btnScrollMode.setText("打开滑动切换");
+        }
     }
 }

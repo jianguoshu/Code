@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".demo.CoordinatorLayout.CoordinatorLayoutListActivity">
 
-    <android.support.v4.view.ViewPager
+    <com.douzi.dd.demo.CoordinatorLayout.CustomViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+        android:layout_height="match_parent"></com.douzi.dd.demo.CoordinatorLayout.CustomViewPager>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,5 +26,21 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="关闭全屏" />
+
+        <TextView
+            android:id="@+id/btn_switch_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="关闭滑动切换" />
+
+        <TextView
+            android:id="@+id/btn_switch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="首页" />
     </LinearLayout>
 </FrameLayout>
