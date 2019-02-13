@@ -171,52 +171,11 @@
                 android:background="#666666" />
 
             <TextView
-                android:id="@+id/tv_CoordinatorLayoutActivity"
+                android:id="@+id/tv_CoordinatorLayoutDemo"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center"
-                android:text="CoordinatorLayoutActivity" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.6dp"
-                android:background="#666666" />
-
-            <TextView
-                android:id="@+id/tv_CoordinatorLayoutViewPagerActivity"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="center"
-                android:text="CoordinatorLayoutViewPagerActivity" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.6dp"
-                android:background="#666666" />
-
-            <TextView
-                android:id="@+id/tv_CoordinatorLayoutViewPagerWebViewActivity"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="center"
-                android:text="CoordinatorLayoutViewPagerWebViewActivity" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.6dp"
-                android:background="#666666" />
-
-            <TextView
-                android:id="@+id/tv_CoordinatorLayoutListActivity"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="center"
-                android:text="CoordinatorLayoutListActivity" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.6dp"
-                android:background="#666666" />
+                android:text="CoordinatorLayoutDemo" />
         </LinearLayout>
     </ScrollView>
 

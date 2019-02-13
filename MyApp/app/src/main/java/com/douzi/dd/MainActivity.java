@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.douzi.dd.demo.CoordinatorLayout.CoordinatorLayoutActivity;
+import com.douzi.dd.demo.CoordinatorLayout.CoordinatorLayoutDemo;
 import com.douzi.dd.demo.CoordinatorLayout.CoordinatorLayoutListActivity;
 import com.douzi.dd.demo.CoordinatorLayout.CoordinatorLayoutViewPagerActivity;
 import com.douzi.dd.demo.CoordinatorLayout.CoordinatorLayoutViewPagerWebViewActivity;
@@ -41,10 +42,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         this.findViewById(R.id.tv_LeonidsActivity).setOnClickListener(this);
         this.findViewById(R.id.tv_VideoViewActivity).setOnClickListener(this);
         this.findViewById(R.id.tv_CameraPreviewActivity).setOnClickListener(this);
-        this.findViewById(R.id.tv_CoordinatorLayoutActivity).setOnClickListener(this);
-        this.findViewById(R.id.tv_CoordinatorLayoutViewPagerActivity).setOnClickListener(this);
-        this.findViewById(R.id.tv_CoordinatorLayoutViewPagerWebViewActivity).setOnClickListener(this);
-        this.findViewById(R.id.tv_CoordinatorLayoutListActivity).setOnClickListener(this);
+        this.findViewById(R.id.tv_CoordinatorLayoutDemo).setOnClickListener(this);
     }
 
     @Override
@@ -89,17 +87,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.tv_CameraPreviewActivity:
                 CameraPreviewActivity.startAct(this);
                 break;
-            case R.id.tv_CoordinatorLayoutActivity:
-                CoordinatorLayoutActivity.startAct(this);
-                break;
-            case R.id.tv_CoordinatorLayoutViewPagerActivity:
-                CoordinatorLayoutViewPagerActivity.startAct(this);
-                break;
-            case R.id.tv_CoordinatorLayoutViewPagerWebViewActivity:
-                CoordinatorLayoutViewPagerWebViewActivity.startAct(this);
-                break;
-            case R.id.tv_CoordinatorLayoutListActivity:
-                CoordinatorLayoutListActivity.startAct(this);
+            case R.id.tv_CoordinatorLayoutDemo:
+                CoordinatorLayoutDemo.startAct(this);
                 break;
         }
     }
