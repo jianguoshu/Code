@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -14,6 +16,8 @@ import android.widget.TextView;
 import com.douzi.dd.BaseActivity;
 import com.douzi.dd.R;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class CoordinatorLayoutViewPagerWebViewActivity extends BaseActivity {
@@ -67,6 +71,38 @@ public class CoordinatorLayoutViewPagerWebViewActivity extends BaseActivity {
 
         toolbarLayout = this.findViewById(R.id.toolbar_layout);
         channelLayout = this.findViewById(R.id.layout_search_result_channel);
+        RecyclerView mListChannel = (RecyclerView) findViewById(R.id.list_search_result_channel);
+        mListChannel.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        List<String> channelList = new ArrayList<>();
+        channelList.add("网页");
+        channelList.add("小说");
+        channelList.add("新闻");
+        channelList.add("微信");
+        channelList.add("网址");
+        channelList.add("应用");
+        channelList.add("图片");
+        channelList.add("游戏");
+        channelList.add("购物");
+        channelList.add("视频");
+        channelList.add("问问");
+        channelList.add("百科");
+        channelList.add("地图");
+        channelList.add("音乐");
+        channelList.add("本地");
+        channelList.add("知乎");
+        channelList.add("资源");
+        channelList.add("表情");
+        channelList.add("明医");
+        channelList.add("英文");
+        channelList.add("学术");
+        channelList.add("词典");
+        channelList.add("漫画");
+        channelList.add("翻译");
+        channelList.add("关注");
+        channelList.add("答题");
+        channelList.add("添加");
+        ChannelAdapter mListChannelAdapter = new ChannelAdapter(this, channelList);
+        mListChannel.setAdapter(mListChannelAdapter);
         btnFullScreen = this.findViewById(R.id.btn_full_screen);
         btnFullScreen.setOnClickListener(new View.OnClickListener() {
             @Override

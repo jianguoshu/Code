@@ -1,5 +1,6 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -8,6 +9,7 @@
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/title_bar_bg"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <android.support.design.widget.CollapsingToolbarLayout
@@ -26,7 +28,6 @@
                 android:layout_height="@dimen/search_result_channel_height"
                 android:layout_gravity="bottom"
                 android:layout_marginTop="43dp"
-                android:background="@color/title_bar_bg_lbs_home"
                 android:orientation="vertical">
 
                 <FrameLayout
@@ -56,13 +57,6 @@
                         android:background="@drawable/channel_fadeout_pic" />
                 </FrameLayout>
             </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/divider_width"
-                android:layout_below="@id/layout_search_result_channel"
-                android:layout_gravity="bottom"
-                android:background="@color/title_bar_divider" />
 
             <RelativeLayout
                 android:id="@+id/rl_search_box"
@@ -250,6 +244,13 @@
                         android:background="@color/search_bar_entry_anim_bottom_bg" />
                 </RelativeLayout>
             </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_width"
+                android:layout_below="@id/layout_search_result_channel"
+                android:layout_gravity="bottom"
+                android:background="@color/title_bar_divider" />
         </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>

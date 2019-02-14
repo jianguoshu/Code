@@ -25,4 +25,5 @@
     <dimen name="result_page_channel_margin_top">-5dp</dimen>
     <dimen name="divider_width">0.6dp</dimen>
     <dimen name="searchbox_txt_font_size">17dp</dimen>
+    <dimen name="channel_text_size_search_result">14dp</dimen>
 </resources>
