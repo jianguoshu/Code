@@ -11,9 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#aaeecc"
-        app:childFullVisual="false"
+        app:childFullVisual="true"
+        app:maxLine="3"
         app:collapsedDef="true"
-        app:collapsedLine="1">
+        app:collapsedLine="5">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -27,7 +28,7 @@
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="一二三四五六七八九十123456789" />
+                android:text="22222222222222" />
 
             <TextView
                 android:layout_width="wrap_content"

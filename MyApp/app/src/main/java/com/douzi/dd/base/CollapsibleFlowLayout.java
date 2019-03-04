@@ -11,7 +11,7 @@ public class CollapsibleFlowLayout extends FlowLayout implements Collapsible {
 
     public static final int COLLAPSE_LINE_VALID = -1;
     public static final boolean COLLAPSED_DEF = true;
-    private int collapsedLine = COLLAPSE_LINE_VALID;
+    private int collapsedLine = COLLAPSE_LINE_VALID;// 折叠后显示的行数
     private boolean isCollapsed = COLLAPSED_DEF;
     private boolean isCollapsible = false;
     private int measureHeight;
@@ -30,7 +30,7 @@ public class CollapsibleFlowLayout extends FlowLayout implements Collapsible {
         super(context, attrs, defStyleAttr);
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CollapsibleFlowLayout, R.attr.CollapsibleFlowLayoutStyle,
                 R.style.CollapsibleFlowLayout);
-        isCollapsed = typedArray.getBoolean(R.styleable.CollapsibleFlowLayout_collapsedLine, COLLAPSED_DEF);
+        isCollapsed = typedArray.getBoolean(R.styleable.CollapsibleFlowLayout_collapsedDef, COLLAPSED_DEF);
         setCollapsedLine(typedArray.getInt(R.styleable.CollapsibleFlowLayout_collapsedLine, COLLAPSE_LINE_VALID));
         typedArray.recycle();
     }
@@ -42,8 +42,8 @@ public class CollapsibleFlowLayout extends FlowLayout implements Collapsible {
         childEndPosition = -1;
         collapsedHeight = 0;
         if (isCollapsible()) {
-            for (int i = 1; i <= collapsedLine; i++) {
-                FlowLayoutHelper.Line line = measureResult.lines.get(i);
+            for (int i = 0; i < collapsedLine; i++) {
+                FlowLayoutHelper.Line line = measureResult.lines.get(i + 1);
                 collapsedHeight += line.height;
                 childEndPosition += line.childNum;
             }
@@ -81,7 +81,7 @@ public class CollapsibleFlowLayout extends FlowLayout implements Collapsible {
             return;
         }
         ViewGroup.LayoutParams layoutParams = getLayoutParams();
-        layoutParams.height = measureHeight;
+        layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
         setLayoutParams(layoutParams);
         isCollapsed = false;
         if (stateListener != null) {
@@ -98,7 +98,7 @@ public class CollapsibleFlowLayout extends FlowLayout implements Collapsible {
         layoutParams.height = collapsedHeight;
         setLayoutParams(layoutParams);
         isCollapsed = true;
-        if (stateListener != null &&  (childEndPosition < 0 || childEndPosition >= getChildCount())) {
+        if (stateListener != null && (childEndPosition < 0 || childEndPosition >= getChildCount())) {
             stateListener.onCollapse(childEndPosition);
         }
     }
