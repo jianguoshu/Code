@@ -11,6 +11,7 @@ import com.douzi.dd.demo.CoordinatorLayout.CoordinatorLayoutViewPagerWebViewActi
 import com.douzi.dd.demo.GridLayoutTest.GridLayoutActivity;
 import com.douzi.dd.demo.anr.ANRActivity;
 import com.douzi.dd.demo.camera.CameraPreviewActivity;
+import com.douzi.dd.demo.flow.FlowLayoutActivity;
 import com.douzi.dd.demo.leonids.LeonidsActivity;
 import com.douzi.dd.demo.maptest.HashBiMapActivity;
 import com.douzi.dd.demo.media.VideoViewActivity;
@@ -43,6 +44,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         this.findViewById(R.id.tv_VideoViewActivity).setOnClickListener(this);
         this.findViewById(R.id.tv_CameraPreviewActivity).setOnClickListener(this);
         this.findViewById(R.id.tv_CoordinatorLayoutDemo).setOnClickListener(this);
+        this.findViewById(R.id.tv_FlowLayoutDemo).setOnClickListener(this);
     }
 
     @Override
@@ -89,6 +91,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.tv_CoordinatorLayoutDemo:
                 CoordinatorLayoutDemo.startAct(this);
+                break;
+            case R.id.tv_FlowLayoutDemo:
+                FlowLayoutActivity.startAct(this);
                 break;
         }
     }
