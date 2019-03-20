@@ -35,4 +35,5 @@
     <color name="suggestion_edit_text_color">#333333</color>
     <color name="edittext_text_color_highlight">#ffe5dc</color>
     <color name="suggestion_edit_text_hint_color">#bbbbbb</color>
+    <color name="item_text_color">#666666</color>
 </resources>

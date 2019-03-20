@@ -16,6 +16,7 @@ import com.douzi.dd.demo.leonids.LeonidsActivity;
 import com.douzi.dd.demo.maptest.HashBiMapActivity;
 import com.douzi.dd.demo.media.VideoViewActivity;
 import com.douzi.dd.demo.overalertwindow.OverAlertActivity;
+import com.douzi.dd.demo.recyclerview.FlexboxlayoutManagerActivity;
 import com.douzi.dd.demo.recyclerview.RecyclerViewActivity;
 import com.douzi.dd.demo.servicetest.ServiceLifecycleActivity;
 import com.douzi.dd.demo.splittouch.SplitTouchActivity;
@@ -45,6 +46,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         this.findViewById(R.id.tv_CameraPreviewActivity).setOnClickListener(this);
         this.findViewById(R.id.tv_CoordinatorLayoutDemo).setOnClickListener(this);
         this.findViewById(R.id.tv_FlowLayoutDemo).setOnClickListener(this);
+        this.findViewById(R.id.tv_FlexboxlayoutManagerActivity).setOnClickListener(this);
     }
 
     @Override
@@ -94,6 +96,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.tv_FlowLayoutDemo:
                 FlowLayoutActivity.startAct(this);
+                break;
+            case R.id.tv_FlexboxlayoutManagerActivity:
+                FlexboxlayoutManagerActivity.startAct(this);
                 break;
         }
     }

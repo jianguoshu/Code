@@ -1,15 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:background="@drawable/label_bg_shape"
+    android:orientation="horizontal">
 
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:background="#dddddd"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:ellipsize="end"
         android:gravity="center"
-        android:padding="15dp"
-        android:textColor="#333333" />
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:singleLine="true"
+        android:text="程序员"
+        android:textColor="@color/item_text_color" />
+
+    <TextView
+        android:id="@+id/btn_expand"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:singleLine="true"
+        android:text="expand"
+        android:textColor="#009900"
+        android:visibility="gone" />
 </LinearLayout>
