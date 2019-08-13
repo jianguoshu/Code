@@ -126,7 +126,7 @@ public class ThreadTestActivity extends BaseActivity {
     }
 
     /**
-     * 实际测试使用这种方式 cancel后子线程继续执行
+     * Runnable不允许抛出异常，必须cache，但是在最外侧catch 出现异常时还是会退出线程
      */
     private void submitRunnable() {
         logClear();
@@ -134,8 +134,8 @@ public class ThreadTestActivity extends BaseActivity {
         future = Executors.newSingleThreadExecutor().submit(new Runnable() {
             @Override
             public void run() {
-                for (int i = 0; i < 5; i++) {
-                    try {
+                try {
+                    for (int i = 0; i < 5; i++) {
                         Thread.sleep(500);
                         final int finalI = i;
                         mRecyclerView.post(new Runnable() {
@@ -145,9 +145,9 @@ public class ThreadTestActivity extends BaseActivity {
                             }
                         });
                         Thread.sleep(500);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
                     }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         });
@@ -170,7 +170,7 @@ public class ThreadTestActivity extends BaseActivity {
     }
 
     /**
-     * 实际测试使用这种方式 cancel后子线程继续执行
+     * Callable可以抛出异常，每次catch InterruptedException，所以调用cancel出现异常还会执行下一次；
      */
     private void submitCallable() {
         logClear();
@@ -215,7 +215,7 @@ public class ThreadTestActivity extends BaseActivity {
     }
 
     /**
-     * 实际测试使用这种方式 cancel后子线程能够停止
+     * Callable可以抛出异常，不catch InterruptedException，所以调用cancel方法时直接退出线程；
      */
     private void startFutureTask() {
         logClear();
