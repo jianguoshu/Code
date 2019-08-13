@@ -199,7 +199,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center"
-                android:text="FlexboxlayoutManagerActivity" />
+                android:text="FlexboxlayoutManagerActivity" />            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.6dp"
+                android:background="#666666" />
+
+            <TextView
+                android:id="@+id/tv_ThreadTestActivity"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="ThreadTestActivity" />
         </LinearLayout>
     </ScrollView>
 

@@ -107,7 +107,8 @@
         <activity android:name=".demo.flow.FlowLayoutActivity" />
         <activity android:name=".demo.recyclerview.RecyclerViewLayoutActivity" />
         <activity android:name=".demo.recyclerview.FlexboxLayoutActivity" />
-        <activity android:name=".demo.recyclerview.FlexboxlayoutManagerActivity"></activity>
+        <activity android:name=".demo.recyclerview.FlexboxlayoutManagerActivity" />
+        <activity android:name=".demo.thread.ThreadTestActivity"></activity>
     </application>
 
 </manifest>

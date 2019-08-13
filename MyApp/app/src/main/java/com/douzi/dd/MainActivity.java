@@ -20,6 +20,7 @@ import com.douzi.dd.demo.recyclerview.FlexboxlayoutManagerActivity;
 import com.douzi.dd.demo.recyclerview.RecyclerViewActivity;
 import com.douzi.dd.demo.servicetest.ServiceLifecycleActivity;
 import com.douzi.dd.demo.splittouch.SplitTouchActivity;
+import com.douzi.dd.demo.thread.ThreadTestActivity;
 import com.douzi.dd.demo.timetest.TimeActivity;
 import com.douzi.dd.demo.toast.ToastActivity;
 import com.douzi.dd.demo.xy.XYActivity;
@@ -47,6 +48,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         this.findViewById(R.id.tv_CoordinatorLayoutDemo).setOnClickListener(this);
         this.findViewById(R.id.tv_FlowLayoutDemo).setOnClickListener(this);
         this.findViewById(R.id.tv_FlexboxlayoutManagerActivity).setOnClickListener(this);
+        this.findViewById(R.id.tv_ThreadTestActivity).setOnClickListener(this);
     }
 
     @Override
@@ -99,6 +101,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.tv_FlexboxlayoutManagerActivity:
                 FlexboxlayoutManagerActivity.startAct(this);
+                break;
+            case R.id.tv_ThreadTestActivity:
+                ThreadTestActivity.startAct(this);
                 break;
         }
     }
