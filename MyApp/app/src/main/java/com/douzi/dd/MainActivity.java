@@ -3,12 +3,9 @@ package com.douzi.dd;
 import android.os.Bundle;
 import android.view.View;
 
-import com.douzi.dd.demo.CoordinatorLayout.CoordinatorLayoutActivity;
 import com.douzi.dd.demo.CoordinatorLayout.CoordinatorLayoutDemo;
-import com.douzi.dd.demo.CoordinatorLayout.CoordinatorLayoutListActivity;
-import com.douzi.dd.demo.CoordinatorLayout.CoordinatorLayoutViewPagerActivity;
-import com.douzi.dd.demo.CoordinatorLayout.CoordinatorLayoutViewPagerWebViewActivity;
 import com.douzi.dd.demo.GridLayoutTest.GridLayoutActivity;
+import com.douzi.dd.demo.seekbar.SeekBarActivity;
 import com.douzi.dd.demo.anr.ANRActivity;
 import com.douzi.dd.demo.camera.CameraPreviewActivity;
 import com.douzi.dd.demo.flow.FlowLayoutActivity;
@@ -49,6 +46,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         this.findViewById(R.id.tv_FlowLayoutDemo).setOnClickListener(this);
         this.findViewById(R.id.tv_FlexboxlayoutManagerActivity).setOnClickListener(this);
         this.findViewById(R.id.tv_ThreadTestActivity).setOnClickListener(this);
+        this.findViewById(R.id.tv_SeekBarActivity).setOnClickListener(this);
     }
 
     @Override
@@ -104,6 +102,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.tv_ThreadTestActivity:
                 ThreadTestActivity.startAct(this);
+                break;
+            case R.id.tv_SeekBarActivity:
+                SeekBarActivity.startAct(this);
                 break;
         }
     }

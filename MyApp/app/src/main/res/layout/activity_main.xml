@@ -199,7 +199,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center"
-                android:text="FlexboxlayoutManagerActivity" />            <View
+                android:text="FlexboxlayoutManagerActivity" />
+
+            <View
                 android:layout_width="match_parent"
                 android:layout_height="0.6dp"
                 android:background="#666666" />
@@ -210,6 +212,18 @@
                 android:layout_height="50dp"
                 android:gravity="center"
                 android:text="ThreadTestActivity" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.6dp"
+                android:background="#666666" />
+
+            <TextView
+                android:id="@+id/tv_SeekBarActivity"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="SeekBarActivity" />
         </LinearLayout>
     </ScrollView>
 
