@@ -15,6 +15,10 @@ public class StepSeekBar extends AppCompatSeekBar {
         helper = new SeekStepHelper(pointWidth, pointId);
     }
 
+    public void setHelper(ISeekHelper helper) {
+        this.helper = helper;
+    }
+
     public StepSeekBar(Context context) {
         super(context);
     }
