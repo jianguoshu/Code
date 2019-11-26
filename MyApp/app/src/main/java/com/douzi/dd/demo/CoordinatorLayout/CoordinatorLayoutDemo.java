@@ -39,6 +39,9 @@ public class CoordinatorLayoutDemo extends BaseActivity implements View.OnClickL
         setContentView(R.layout.activity_coordinator_layout_demo);
 
         this.findViewById(R.id.tv_CoordinatorLayoutActivity).setOnClickListener(this);
+        this.findViewById(R.id.tv_CoordinatorLayoutActivity2).setOnClickListener(this);
+        this.findViewById(R.id.tv_CoordinatorLayoutActivity5).setOnClickListener(this);
+        this.findViewById(R.id.tv_CoordinatorLayoutActivity6).setOnClickListener(this);
         this.findViewById(R.id.tv_CoordinatorLayoutViewPagerActivity).setOnClickListener(this);
         this.findViewById(R.id.tv_CoordinatorLayoutViewPagerWebViewActivity).setOnClickListener(this);
         this.findViewById(R.id.tv_CoordinatorLayoutListActivity).setOnClickListener(this);
@@ -48,7 +51,16 @@ public class CoordinatorLayoutDemo extends BaseActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_CoordinatorLayoutActivity:
-                CoordinatorLayoutActivity.startAct(this);
+                CoordinatorLayoutActivity.startAct(this, CoordinatorLayoutActivity.Type.DEF);
+                break;
+            case R.id.tv_CoordinatorLayoutActivity2:
+                CoordinatorLayoutActivity.startAct(this, CoordinatorLayoutActivity.Type.T1);
+                break;
+            case R.id.tv_CoordinatorLayoutActivity5:
+                CoordinatorLayoutActivity.startAct(this, CoordinatorLayoutActivity.Type.T2);
+                break;
+            case R.id.tv_CoordinatorLayoutActivity6:
+                CoordinatorLayoutActivity.startAct(this, CoordinatorLayoutActivity.Type.T3);
                 break;
             case R.id.tv_CoordinatorLayoutViewPagerActivity:
                 CoordinatorLayoutViewPagerActivity.startAct(this);

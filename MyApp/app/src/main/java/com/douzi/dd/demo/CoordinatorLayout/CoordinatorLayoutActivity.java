@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.IntDef;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -29,6 +30,16 @@ import static android.view.View.OVER_SCROLL_NEVER;
 
 public class CoordinatorLayoutActivity extends BaseActivity {
 
+    @IntDef({Type.DEF, Type.T1, Type.T2, Type.T3})
+    public @interface Type {
+        int DEF = 0;
+        int T1 = 1;
+        int T2 = 2;
+        int T3 = 3;
+    }
+
+    public static final String K_TYPE = "type";
+
     private WebView mWebView;
     private CollapsingToolbarLayout toolbarLayout;
     private View channelLayout;
@@ -37,8 +48,9 @@ public class CoordinatorLayoutActivity extends BaseActivity {
     private TextView btnCover;
     private RecyclerView mListChannel;
 
-    public static void startAct(Context context) {
+    public static void startAct(Context context, @Type int type) {
         Intent intent = new Intent(context, CoordinatorLayoutActivity.class);
+        intent.putExtra(K_TYPE, type);
         if (!(context instanceof Activity)) {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
@@ -48,7 +60,21 @@ public class CoordinatorLayoutActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_coordinator_layout);
+        @Type int type = getIntent().getIntExtra(K_TYPE, Type.DEF);
+        switch (type) {
+            case Type.DEF:
+                setContentView(R.layout.activity_coordinator_layout);
+                break;
+            case Type.T1:
+                setContentView(R.layout.activity_coordinator_layout_2);
+                break;
+            case Type.T2:
+                setContentView(R.layout.activity_coordinator_layout_5);
+                break;
+            case Type.T3:
+                setContentView(R.layout.activity_coordinator_layout_6);
+                break;
+        }
 
         searchBoxHeight = getResources().getDimensionPixelSize(R.dimen.web_topbar_height);
 

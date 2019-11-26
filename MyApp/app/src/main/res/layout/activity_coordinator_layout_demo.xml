@@ -27,6 +27,42 @@
                 android:background="#666666" />
 
             <TextView
+                android:id="@+id/tv_CoordinatorLayoutActivity2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="CoordinatorLayoutActivity2" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.6dp"
+                android:background="#666666" />
+
+            <TextView
+                android:id="@+id/tv_CoordinatorLayoutActivity5"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="CoordinatorLayoutActivity5" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.6dp"
+                android:background="#666666" />
+
+            <TextView
+                android:id="@+id/tv_CoordinatorLayoutActivity6"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="CoordinatorLayoutActivity6" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.6dp"
+                android:background="#666666" />
+
+            <TextView
                 android:id="@+id/tv_CoordinatorLayoutViewPagerActivity"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
