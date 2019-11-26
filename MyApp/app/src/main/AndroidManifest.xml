@@ -109,7 +109,8 @@
         <activity android:name=".demo.recyclerview.FlexboxLayoutActivity" />
         <activity android:name=".demo.recyclerview.FlexboxlayoutManagerActivity" />
         <activity android:name=".demo.thread.ThreadTestActivity" />
-        <activity android:name=".demo.seekbar.SeekBarActivity"></activity>
+        <activity android:name=".demo.seekbar.SeekBarActivity" />
+        <activity android:name=".demo.java.JavaTestActivity"></activity>
     </application>
 
 </manifest>

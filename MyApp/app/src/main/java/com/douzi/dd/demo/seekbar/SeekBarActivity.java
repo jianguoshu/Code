@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.SeekBar;
 
 import com.douzi.dd.BaseActivity;
@@ -30,7 +31,6 @@ public class SeekBarActivity extends BaseActivity {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
             }
 
             @Override
@@ -41,6 +41,12 @@ public class SeekBarActivity extends BaseActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
+            }
+        });
+        seekBar.setStepChangeListener(new OnStepChangeListener() {
+            @Override
+            public void onStepChanged(int step) {
+                Log.i("onProgressChanged", "step = " + step);
             }
         });
     }

@@ -13,7 +13,9 @@ public interface ISeekHelper {
 
     int calPointByEvent(MotionEvent event, int def);
 
-    int calProgressByPoint(int point, int def);
+    int getPointProgress(int point, int def);
+
+    int getProgressPoint(int progress, int def);
 
     boolean isTouchInPoint(MotionEvent event);
 

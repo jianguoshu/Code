@@ -5,10 +5,12 @@ import android.content.Context;
 import android.support.v7.widget.AppCompatSeekBar;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.widget.SeekBar;
 
 public class StepSeekBar extends AppCompatSeekBar {
 
     private ISeekHelper helper;
+    private OnStepChangeListener stepChangeListener;
 
     public void setProgressPointArr(int pointWidth, int... pointId) {
         setMax(pointId[pointId.length - 1]);
@@ -19,16 +21,52 @@ public class StepSeekBar extends AppCompatSeekBar {
         this.helper = helper;
     }
 
+    public void setStepChangeListener(OnStepChangeListener stepChangeListener) {
+        this.stepChangeListener = stepChangeListener;
+    }
+
     public StepSeekBar(Context context) {
         super(context);
+        init();
     }
 
     public StepSeekBar(Context context, AttributeSet attrs) {
         super(context, attrs);
+        init();
     }
 
     public StepSeekBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init();
+    }
+
+    private void init() {
+        super.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (!fromUser && helper != null && stepChangeListener != null) {
+                    int step = helper.getPointProgress(helper.getProgressPoint(progress, -1), -1);
+                    if (step != -1) {
+                        stepChangeListener.onStepChanged(step);
+                    }
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+    }
+
+    @Override
+    public void setOnSeekBarChangeListener(OnSeekBarChangeListener l) {
+
     }
 
     @Override

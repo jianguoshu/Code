@@ -31,7 +31,7 @@ public class SeekStepHelper implements ISeekHelper{
         }
 
         int point = calPointByProgress(progressNew, progressMax, -1);
-        return calProgressByPoint(point, progressNew);
+        return getPointProgress(point, progressNew);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class SeekStepHelper implements ISeekHelper{
             return def;
         }
 
-        return calProgressByPoint(calPointByEvent(event, -1), def);
+        return getPointProgress(calPointByEvent(event, -1), def);
     }
 
     @Override
@@ -72,9 +72,18 @@ public class SeekStepHelper implements ISeekHelper{
     }
 
     @Override
-    public int calProgressByPoint(int point, int def) {
+    public int getPointProgress(int point, int def) {
         if (isIndexValid(point)) {
             return progressPointArr[point];
+        }
+        return def;
+    }
+
+    @Override
+    public int getProgressPoint(int progress, int def) {
+        int point = pointSA.get(progress, -1);
+        if (isIndexValid(point)) {
+            return point;
         }
         return def;
     }

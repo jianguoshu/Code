@@ -74,4 +74,23 @@
 
     </LinearLayout>
 
+    <SeekBar
+        android:layout_marginTop="50dp"
+        android:id="@+id/seek_bar_2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:indeterminate="false"
+        android:indeterminateOnly="false"
+        android:max="3"
+        android:maxHeight="5dp"
+        android:minHeight="5dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:progress="1"
+        android:progressDrawable="@drawable/seek_bar"
+        android:secondaryProgress="2"
+        android:thumb="@drawable/seek_bar_thumb"
+        android:thumbOffset="0dp"
+        android:thumbTintMode="src_over" />
 </LinearLayout>

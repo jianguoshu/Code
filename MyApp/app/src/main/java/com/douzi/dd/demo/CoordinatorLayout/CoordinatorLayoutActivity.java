@@ -71,7 +71,7 @@ public class CoordinatorLayoutActivity extends BaseActivity {
                 super.onReceivedError(view, request, error);
             }
         });
-        mWebView.loadUrl("http://wap.sogou.com");
+        mWebView.loadUrl("https://wap.sogou.com");
 
         toolbarLayout = this.findViewById(R.id.toolbar_layout);
         channelLayout = this.findViewById(R.id.layout_search_result_channel);

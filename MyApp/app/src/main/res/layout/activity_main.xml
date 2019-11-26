@@ -224,6 +224,18 @@
                 android:layout_height="50dp"
                 android:gravity="center"
                 android:text="SeekBarActivity" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.6dp"
+                android:background="#666666" />
+
+            <TextView
+                android:id="@+id/tv_JavaTestActivity"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="JavaTestActivity" />
         </LinearLayout>
     </ScrollView>
 
