@@ -104,6 +104,7 @@
         <activity android:name=".demo.CoordinatorLayout.CoordinatorLayoutViewPagerWebViewActivity" />
         <activity android:name=".demo.CoordinatorLayout.CoordinatorLayoutListActivity" />
         <activity android:name=".demo.CoordinatorLayout.PaaActivity" />
+        <activity android:name=".demo.CoordinatorLayout.PaaActivity2" />
         <activity android:name=".demo.CoordinatorLayout.CoordinatorLayoutDemo" />
         <activity android:name=".demo.flow.FlowLayoutActivity" />
         <activity android:name=".demo.recyclerview.RecyclerViewLayoutActivity" />

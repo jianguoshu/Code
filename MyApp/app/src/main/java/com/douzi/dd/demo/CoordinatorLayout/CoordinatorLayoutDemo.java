@@ -46,6 +46,7 @@ public class CoordinatorLayoutDemo extends BaseActivity implements View.OnClickL
         this.findViewById(R.id.tv_CoordinatorLayoutViewPagerWebViewActivity).setOnClickListener(this);
         this.findViewById(R.id.tv_CoordinatorLayoutListActivity).setOnClickListener(this);
         this.findViewById(R.id.tv_PaaActivity).setOnClickListener(this);
+        this.findViewById(R.id.tv_PaaActivity2).setOnClickListener(this);
     }
 
     @Override
@@ -74,6 +75,9 @@ public class CoordinatorLayoutDemo extends BaseActivity implements View.OnClickL
                 break;
             case R.id.tv_PaaActivity:
                 PaaActivity.startAct(this);
+                break;
+            case R.id.tv_PaaActivity2:
+                PaaActivity2.startAct(this);
                 break;
         }
     }
