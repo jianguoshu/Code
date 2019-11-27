@@ -1,5 +1,7 @@
 package com.douzi.dd.demo.CoordinatorLayout;
 
+import android.animation.Animator;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -22,6 +24,7 @@ import com.douzi.dd.BaseActivity;
 import com.douzi.dd.R;
 import com.douzi.dd.utils.DeviceUtil;
 
+import static android.support.v4.view.ViewCompat.TYPE_NON_TOUCH;
 import static android.view.View.OVER_SCROLL_NEVER;
 
 public class PaaActivity2 extends BaseActivity {
@@ -113,8 +116,21 @@ public class PaaActivity2 extends BaseActivity {
         findViewById(R.id.btn_cover_half).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                appBarLayout.offsetTopAndBottom(DeviceUtil.dip2px(-300));
-                appBarLayout.setExpanded(false, true);
+
+                final CoordinatorLayout.Behavior behavior1 = ((CoordinatorLayout.LayoutParams) appBarLayout.getLayoutParams()).getBehavior();
+                if (behavior1 instanceof AppBarLayout.Behavior) {
+                    ValueAnimator valueAnimator = ValueAnimator.ofFloat(0.0f, 1.0f);
+                    valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public void onAnimationUpdate(ValueAnimator animation) {
+                            float value = (float) animation.getAnimatedValue();
+                            ((AppBarLayout.Behavior) behavior1).setTopAndBottomOffset((int) (-DeviceUtil.dip2px(300) * value));
+                        }
+                    });
+                    valueAnimator.start();
+                } else if (behavior1 != null) {
+                    behavior1.onNestedPreScroll(coordinatorLayout, appBarLayout, appBarLayoutContent, 0, DeviceUtil.dip2px(300), new int[]{0, 0}, TYPE_NON_TOUCH);
+                }
             }
         });
     }
