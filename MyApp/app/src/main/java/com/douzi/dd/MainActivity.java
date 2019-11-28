@@ -6,6 +6,7 @@ import android.view.View;
 import com.douzi.dd.demo.CoordinatorLayout.CoordinatorLayoutDemo;
 import com.douzi.dd.demo.GridLayoutTest.GridLayoutActivity;
 import com.douzi.dd.demo.java.JavaTestActivity;
+import com.douzi.dd.demo.nested.NestedDemo;
 import com.douzi.dd.demo.seekbar.SeekBarActivity;
 import com.douzi.dd.demo.anr.ANRActivity;
 import com.douzi.dd.demo.camera.CameraPreviewActivity;
@@ -49,6 +50,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         this.findViewById(R.id.tv_ThreadTestActivity).setOnClickListener(this);
         this.findViewById(R.id.tv_SeekBarActivity).setOnClickListener(this);
         this.findViewById(R.id.tv_JavaTestActivity).setOnClickListener(this);
+        this.findViewById(R.id.tv_NestedDemo).setOnClickListener(this);
     }
 
     @Override
@@ -110,6 +112,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.tv_JavaTestActivity:
                 JavaTestActivity.startAct(this);
+                break;
+            case R.id.tv_NestedDemo:
+                NestedDemo.startAct(this);
                 break;
         }
     }
