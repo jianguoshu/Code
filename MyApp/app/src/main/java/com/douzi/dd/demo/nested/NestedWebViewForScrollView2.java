@@ -20,7 +20,7 @@ public class NestedWebViewForScrollView2 extends WebView implements NestedScroll
     private NestedScrollingChildHelper mChildHelper;
     private int[] mScrollConsumed;
     private boolean priorityForUp = false;
-    private boolean priorityForDown = true;
+    private boolean priorityForDown = false;
 
     public NestedWebViewForScrollView2(Context context) {
         this(context, null);
@@ -50,17 +50,20 @@ public class NestedWebViewForScrollView2 extends WebView implements NestedScroll
                 canNested = false;
                 mLastY = y;
                 mDownY = y;
-                ViewParent parent = getParent();
-                if (parent != null) {
-                    parent.requestDisallowInterceptTouchEvent(true);
-                }
                 result = super.onTouchEvent(event);
                 startNestedScroll(ViewCompat.SCROLL_AXIS_VERTICAL);
                 break;
             case MotionEvent.ACTION_MOVE:
                 int deltaY = mLastY - y;
                 if (canNested) {
-                    if (deltaY > 0 && (!priorityForUp) || deltaY < 0 && !priorityForDown) {
+                    if (deltaY > 0 && priorityForUp) {
+                        float range = getContentHeight() * getScale() - getScrollY() - getHeight();
+                        deltaY = (int) Math.max(0, deltaY - range);
+                    }
+                    if (deltaY < 0 && priorityForDown) {
+                        deltaY = Math.min(0, deltaY + getScrollY());
+                    }
+                    if (deltaY != 0) {
                         if (dispatchNestedPreScroll(0, deltaY, mScrollConsumed, mScrollOffset)) {
                             if (dispatchNestedScroll(0, 0, 0, deltaY, mScrollOffset)) {
                                 mLastY = y - mScrollOffset[1];
@@ -79,7 +82,14 @@ public class NestedWebViewForScrollView2 extends WebView implements NestedScroll
                         } else if (deltaY < 0) {
                             dyExtra = deltaY + touchSlop;
                         }
-                        if (dyExtra > 0 && (!priorityForUp) || dyExtra < 0 && !priorityForDown) {
+                        if (dyExtra > 0 && priorityForUp) {
+                            float range = getContentHeight() * getScale() - getScrollY() - getHeight();
+                            dyExtra = (int) Math.max(0, dyExtra - range);
+                        }
+                        if (deltaY < 0 && priorityForDown) {
+                            dyExtra = Math.min(0, dyExtra + getScrollY());
+                        }
+                        if (dyExtra != 0) {
                             if (dispatchNestedPreScroll(0, dyExtra, mScrollConsumed, mScrollOffset)) {
                                 if (dispatchNestedScroll(0, 0, 0, dyExtra, mScrollOffset)) {
                                     mLastY = y - mScrollOffset[1];
