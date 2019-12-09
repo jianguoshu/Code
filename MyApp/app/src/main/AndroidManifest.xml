@@ -105,6 +105,7 @@
         <activity android:name=".demo.CoordinatorLayout.CoordinatorLayoutListActivity" />
         <activity android:name=".demo.CoordinatorLayout.PaaActivity" />
         <activity android:name=".demo.CoordinatorLayout.PaaActivity2" />
+        <activity android:name=".demo.CoordinatorLayout.PaaActivity3" />
         <activity android:name=".demo.CoordinatorLayout.CoordinatorLayoutDemo" />
         <activity android:name=".demo.nested.NestedDemo" />
         <activity android:name=".demo.nested.WebViewNestedActivity" />
