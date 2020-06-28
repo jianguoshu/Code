@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.douzi.dd.demo.CoordinatorLayout.CoordinatorLayoutDemo;
 import com.douzi.dd.demo.GridLayoutTest.GridLayoutActivity;
+import com.douzi.dd.demo.inflate.InflateTestActivity;
 import com.douzi.dd.demo.java.JavaTestActivity;
 import com.douzi.dd.demo.nested.NestedDemo;
 import com.douzi.dd.demo.seekbar.SeekBarActivity;
@@ -19,6 +20,7 @@ import com.douzi.dd.demo.recyclerview.FlexboxlayoutManagerActivity;
 import com.douzi.dd.demo.recyclerview.RecyclerViewActivity;
 import com.douzi.dd.demo.servicetest.ServiceLifecycleActivity;
 import com.douzi.dd.demo.splittouch.SplitTouchActivity;
+import com.douzi.dd.demo.sqlite.SqliteTestActivity;
 import com.douzi.dd.demo.thread.ThreadTestActivity;
 import com.douzi.dd.demo.timetest.TimeActivity;
 import com.douzi.dd.demo.toast.ToastActivity;
@@ -51,6 +53,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         this.findViewById(R.id.tv_SeekBarActivity).setOnClickListener(this);
         this.findViewById(R.id.tv_JavaTestActivity).setOnClickListener(this);
         this.findViewById(R.id.tv_NestedDemo).setOnClickListener(this);
+        this.findViewById(R.id.tv_SqliteDemo).setOnClickListener(this);
+        this.findViewById(R.id.tv_Inflateemo).setOnClickListener(this);
     }
 
     @Override
@@ -115,6 +119,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.tv_NestedDemo:
                 NestedDemo.startAct(this);
+                break;
+            case R.id.tv_SqliteDemo:
+                SqliteTestActivity.startAct(this);
+                break;
+            case R.id.tv_Inflateemo:
+                InflateTestActivity.startAct(this);
                 break;
         }
     }

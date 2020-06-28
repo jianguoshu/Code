@@ -12,7 +12,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:divider="@drawable/shape_divider"
+            android:orientation="vertical"
+            android:showDividers="middle">
 
             <TextView
                 android:id="@+id/tv_btn_xy"
@@ -21,22 +23,12 @@
                 android:gravity="center"
                 android:text="XYActivity" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.6dp"
-                android:background="#666666" />
-
             <TextView
                 android:id="@+id/tv_btn_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center"
                 android:text="RecyclerViewActivity" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.6dp"
-                android:background="#666666" />
 
             <TextView
                 android:id="@+id/tv_btn_toast"
@@ -45,22 +37,12 @@
                 android:gravity="center"
                 android:text="ToastActivity" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.6dp"
-                android:background="#666666" />
-
             <TextView
                 android:id="@+id/tv_btn_split_touch"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center"
                 android:text="SplitTouchActivity" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.6dp"
-                android:background="#666666" />
 
             <TextView
                 android:id="@+id/tv_btn_service_lifecycle"
@@ -69,10 +51,6 @@
                 android:gravity="center"
                 android:text="ServiceLifecycleActivity" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.6dp"
-                android:background="#666666" />
 
             <TextView
                 android:id="@+id/tv_btn_gridlayout"
@@ -81,10 +59,6 @@
                 android:gravity="center"
                 android:text="GridLayoutActivity" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.6dp"
-                android:background="#666666" />
 
             <TextView
                 android:id="@+id/tv_btn_over_alert"
@@ -93,10 +67,6 @@
                 android:gravity="center"
                 android:text="OverAlertActivity" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.6dp"
-                android:background="#666666" />
 
             <TextView
                 android:id="@+id/tv_btn_time_test"
@@ -105,10 +75,6 @@
                 android:gravity="center"
                 android:text="TimeTestActivity" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.6dp"
-                android:background="#666666" />
 
             <TextView
                 android:id="@+id/tv_btn_anr_test"
@@ -117,10 +83,6 @@
                 android:gravity="center"
                 android:text="ANRActivity" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.6dp"
-                android:background="#666666" />
 
             <TextView
                 android:id="@+id/tv_hashbimap_test"
@@ -129,10 +91,6 @@
                 android:gravity="center"
                 android:text="HashBiMapActivity" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.6dp"
-                android:background="#666666" />
 
             <TextView
                 android:id="@+id/tv_LeonidsActivity"
@@ -141,10 +99,6 @@
                 android:gravity="center"
                 android:text="LeonidsActivity" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.6dp"
-                android:background="#666666" />
 
             <TextView
                 android:id="@+id/tv_VideoViewActivity"
@@ -153,10 +107,6 @@
                 android:gravity="center"
                 android:text="VideoViewActivity" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.6dp"
-                android:background="#666666" />
 
             <TextView
                 android:id="@+id/tv_CameraPreviewActivity"
@@ -165,10 +115,6 @@
                 android:gravity="center"
                 android:text="CameraPreviewActivity" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.6dp"
-                android:background="#666666" />
 
             <TextView
                 android:id="@+id/tv_CoordinatorLayoutDemo"
@@ -177,10 +123,6 @@
                 android:gravity="center"
                 android:text="CoordinatorLayoutDemo" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.6dp"
-                android:background="#666666" />
 
             <TextView
                 android:id="@+id/tv_FlowLayoutDemo"
@@ -189,22 +131,12 @@
                 android:gravity="center"
                 android:text="FlowLayoutDemo" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.6dp"
-                android:background="#666666" />
-
             <TextView
                 android:id="@+id/tv_FlexboxlayoutManagerActivity"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center"
                 android:text="FlexboxlayoutManagerActivity" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.6dp"
-                android:background="#666666" />
 
             <TextView
                 android:id="@+id/tv_ThreadTestActivity"
@@ -213,22 +145,12 @@
                 android:gravity="center"
                 android:text="ThreadTestActivity" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.6dp"
-                android:background="#666666" />
-
             <TextView
                 android:id="@+id/tv_SeekBarActivity"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center"
                 android:text="SeekBarActivity" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.6dp"
-                android:background="#666666" />
 
             <TextView
                 android:id="@+id/tv_JavaTestActivity"
@@ -237,17 +159,26 @@
                 android:gravity="center"
                 android:text="JavaTestActivity" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.6dp"
-                android:background="#666666" />
-
             <TextView
                 android:id="@+id/tv_NestedDemo"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="center"
                 android:text="NestedDemo" />
+
+            <TextView
+                android:id="@+id/tv_SqliteDemo"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="SqliteDemo" />
+
+            <TextView
+                android:id="@+id/tv_Inflateemo"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="Inflateemo" />
         </LinearLayout>
     </ScrollView>
 
