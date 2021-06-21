@@ -133,4 +133,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
+
+    @Override
+    protected boolean onBackKeyDown() {
+        lifecycleObserveHelper.exitApp();
+        finish();
+        return true;
+    }
 }

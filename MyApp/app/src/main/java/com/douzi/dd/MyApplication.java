@@ -6,7 +6,6 @@ import com.douzi.dd.utils.DeviceUtil;
 
 public class MyApplication extends Application {
     private static MyApplication instance;
-    private boolean isAppForeground = false;
 
     public MyApplication() {
     }
@@ -18,13 +17,7 @@ public class MyApplication extends Application {
         DeviceUtil.init(this);
     }
 
-    public void setAppForeground(boolean isAppForeground) {
-        this.isAppForeground = isAppForeground;
-    }
 
-    public boolean isAppForeground() {
-        return isAppForeground;
-    }
 
     public static MyApplication getInstance() {
         return instance;

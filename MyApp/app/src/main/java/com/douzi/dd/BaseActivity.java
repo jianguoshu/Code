@@ -1,63 +1,41 @@
 package com.douzi.dd;
 
-import android.app.ActivityManager;
-import android.content.ComponentName;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.KeyEvent;
 
-import java.util.List;
+import com.douzi.dd.base.AppFBGroundObserveHelper;
+import com.douzi.dd.base.AppFBGroundObserver;
+import com.douzi.dd.utils.Logger;
 
-public class BaseActivity extends FragmentActivity {
+public class BaseActivity extends FragmentActivity implements AppFBGroundObserver {
 
-    private static ActivityManager mActivityManager;
-    private boolean isAppBroughtToBackground = true;
     private boolean mIsDestroyed;
+    protected static final AppFBGroundObserveHelper lifecycleObserveHelper = new AppFBGroundObserveHelper();
+    private AppFBGroundObserver appFBGroundObserver = new AppFBGroundObserver() {
+        @Override
+        public void onAppForeground() {
+            Logger.i("Lifecycle-observer", BaseActivity.this + "onAppForeground");
+        }
+
+        @Override
+        public void onAppBackground() {
+            Logger.i("Lifecycle-observer", BaseActivity.this + "onAppBackground");
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (isAppBroughtToBackground) {
-            onAppForeground();
-            isAppBroughtToBackground = false;
-        }
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-
-        if (!isAppBroughtToBackground) {
-            try {
-                if (mActivityManager == null) {
-                    mActivityManager = (ActivityManager) MyApplication.getInstance().getSystemService(Context.ACTIVITY_SERVICE);
-                }
-
-                List<ActivityManager.RunningTaskInfo> tasks = mActivityManager.getRunningTasks(1);
-                if (!tasks.isEmpty()) {
-                    ComponentName topActivity = tasks.get(0).topActivity;
-                    if (!topActivity.getPackageName().equals(getPackageName())) {
-                        isAppBroughtToBackground = true;
-                        onAppBackground();
-                        return;
-                    }
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        lifecycleObserveHelper.observe(this);
+        lifecycleObserveHelper.getAppFBGroundObservable().registerObserver(appFBGroundObserver);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         mIsDestroyed = true;
+        lifecycleObserveHelper.getAppFBGroundObservable().unregisterObserver(appFBGroundObserver);
     }
 
     public boolean isFinishOrDestroy() {
@@ -68,12 +46,29 @@ public class BaseActivity extends FragmentActivity {
         return mIsDestroyed;
     }
 
-    protected void onAppForeground() {
-        MyApplication.getInstance().setAppForeground(true);
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (onBackKeyDown()) {
+                return true;
+            }
+        }
+
+        return super.onKeyDown(keyCode, event);
     }
 
-    protected void onAppBackground() {
-        MyApplication.getInstance().setAppForeground(false);
+    protected boolean onBackKeyDown() {
+        return false;
+    }
+
+    @Override
+    public void onAppForeground() {
+        Logger.i("Lifecycle", this + "onAppForeground");
+    }
+
+    @Override
+    public void onAppBackground() {
+        Logger.i("Lifecycle", this + "onAppBackground");
     }
 }
 
